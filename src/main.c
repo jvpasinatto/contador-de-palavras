@@ -7,16 +7,54 @@
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
 
-  char c;
+  char c, vec[200];
+  int words = 0, i=0, j;
 
-  c = 1;
-
-  while (c != '\n') {
+  while (c != '\n')
+  {
     scanf("%c", &c);
+    vec[i] = c;
+    i++;
+  }
+  for(j=0;j<=(i-1);j++)
+  {
+    if ((vec[j] == ',') || (vec[j] == '!') || (vec[j] == '-') ||  (vec[j] == ' ') || (vec[j] == '.') || (vec[j] == '\n'))
+    {
+      if (j!=0)
+      {
+        if((vec[j-1] == ',') || (vec[j-1] == '!') || (vec[j-1] == '-') ||  (vec[j-1] == ' ') || (vec[j-1] == '.'))
+        {
+            j=j;
+        }
+        else
+        {
+            words++;
+        }
+      }
+    }
+    else if ((vec[j]<='9') && (vec[j]>='0')  && ((vec[j+1]=='.') || (vec[j+1]==',')))
+    {
+      if ((vec[j+2]=='.') || (vec[j+2]==',') || (vec[j+2]==' ') || (vec[j+2] == '\n'))
+      {
+          j=j;
+      }
+      else
+      {
+        words--;
+      }
+
+      }
+
+
+
+
+
   }
 
-  printf("1\n");
-  return 0;
+
+    printf("%d\n", words);
+    return 0;
 }
